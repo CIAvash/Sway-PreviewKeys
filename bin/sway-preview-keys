@@ -1,0 +1,5 @@
+#!/usr/bin/env raku
+
+use v6.d;
+
+use Sway::PreviewKeys:auth<zef:CIAvash>;

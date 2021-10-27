@@ -1,0 +1,9 @@
+use v6.d;
+
+use Test;
+
+plan 1;
+
+BEGIN {
+    use-ok 'Sway::PreviewKeys:auth<zef:CIAvash>';
+}

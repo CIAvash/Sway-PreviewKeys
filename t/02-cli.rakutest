@@ -1,0 +1,14 @@
+use v6.d;
+
+use Test;
+use Test::Run:auth<zef:CIAvash> :runs_ok;
+
+plan 1;
+
+my IO::Path:D $test_dir = $?FILE.IO.parent;
+my IO::Path:D $module   = $test_dir.parent;
+my IO::Path:D $script   = $module.add: 'bin', 'sway-preview-keys';
+
+my @args = «$*EXECUTABLE -I $module $script»;
+
+runs_ok :args«@args[] -v», :out(/'sway-preview-keys v' [\d+ %% '.'] ** 3 .+/), 'Prints version';

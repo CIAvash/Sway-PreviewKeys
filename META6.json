@@ -1,0 +1,24 @@
+{
+    "perl": "6.d",
+    "name": "Sway::PreviewKeys",
+    "description": "Program for showing Sway window manager's key bindings associated with a mode.",
+    "authors": ["Siavash Askari Nasr"],
+    "auth": "zef:CIAvash",
+    "version": "0.1.0",
+    "tags": ["Sway", "SwayWM", "App", "CLI", "Command Line", "Preview", "Key Bindings", "GUI"],
+    "license": "GPL-3.0-or-later",
+    "source-url": "https://github.com/CIAvash/Sway-PreviewKeys.git",
+    "provides": {
+        "Sway::PreviewKeys": "lib/Sway/PreviewKeys.rakumod"
+    },
+    "depends": [
+        "Sway::Config:auth<zef:CIAvash>",
+        "GtkLayerShell:auth<zef:CIAvash>:api<0.6>",
+        "Pod::Contents:auth<zef:CIAvash>",
+        "Gnome::Gtk3",
+        "JSON::Fast"
+    ],
+    "test-depends": [
+        "Test::Run:auth<zef:CIAvash>:ver<0.1.0>"
+    ]
+}
