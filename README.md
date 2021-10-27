@@ -71,6 +71,28 @@ Example style:
 }
 ```
 
+INSTALLATION
+============
+
+You need to have [Raku](https://www.raku-lang.ir/en) and [zef](https://github.com/ugexe/zef), then run:
+
+```console
+zef install --/test "Sway::PreviewKeys:auth<zef:CIAvash>"
+```
+
+or if you have cloned the repo:
+
+```console
+zef install .
+```
+
+TESTING
+=======
+
+```console
+prove -ve 'raku -I.' --ext rakutest
+```
+
 REPOSITORY
 ==========
 

@@ -101,6 +101,37 @@ Example style:
 =end code
 =end SYNOPSIS
 
+=begin INSTALLATION
+
+You need to have L<Raku|https://www.raku-lang.ir/en> and L<zef|https://github.com/ugexe/zef>,
+then run:
+
+=begin code :lang<console>
+
+zef install --/test "Sway::PreviewKeys:auth<zef:CIAvash>"
+
+=end code
+
+or if you have cloned the repo:
+
+=begin code :lang<console>
+
+zef install .
+
+=end code
+
+=end INSTALLATION
+
+=begin TESTING
+
+=begin code :lang<console>
+
+prove -ve 'raku -I.' --ext rakutest
+
+=end code
+
+=end TESTING
+
 my Sway::Config $sway_config;
 
 my Gnome::Gtk3::Main   $main;
