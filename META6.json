@@ -4,7 +4,7 @@
     "description": "Program for showing Sway window manager's key bindings associated with a mode.",
     "authors": ["Siavash Askari Nasr"],
     "auth": "zef:CIAvash",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "tags": ["Sway", "SwayWM", "App", "CLI", "Command Line", "Preview", "Key Bindings", "GUI"],
     "license": "GPL-3.0-or-later",
     "source-url": "https://github.com/CIAvash/Sway-PreviewKeys.git",
