@@ -23,6 +23,8 @@ SYNOPSIS
         [-t|--add-mode-name]                     -- Add mode name at top of the preview window [t=title]
         [-s|--sort-key-bindings]                 -- Sort mode's key bindings [s=sort]
         [-d|--bindsym-default-mode=<NAME>]       -- Bind a symbol for previewing key bindings of default mode [d=default]
+        [-f|--filter-out=<REGEX>]                -- Exclude commands which match REGEX. Can be repeated. [f=filter]
+                                                    REGEX is a Raku regex: https://docs.raku.org/language/regexes
         [-r|--max-rows=<NUM>]                    -- Add columns to show key bindings when number of key bindings exceed the maximum row. Can be repeated. [r=row]
                                                     Biggest number which is lower than the number of key bindings is chosen, otherwise the minimum of the numbers is used
         [-e|--ellipsize=<NUM>]                   -- Ellipsize commands, given number is used for maximum characters to show. [e=ellipsize]
@@ -31,10 +33,12 @@ SYNOPSIS
                                                     Takes effect only when --ellipsize is used
 
       sway-preview-keys -v|--version -- Print version
+      sway-preview-keys -h|--help    -- Print help
 
     Example:
       sway-preview-keys -d 'Mod4+o' -t -e 26 -r 20 -r 38
       sway-preview-keys --bindsym-default-mode 'Mod4+o' --add-mode-name --ellipsize 26 --max-rows 20 --max-rows 38
+      sway-preview-keys -d 'Mod4+o' -t -e 55 -r 20 -r 38 -f ':s workspace number' -f '^ focus' -f ':s ^move < right left up down >'
 
 Example style:
 

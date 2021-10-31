@@ -2,4 +2,6 @@
 
 use v6.d;
 
+use Getopt::Long;
+
 use Sway::PreviewKeys:auth<zef:CIAvash>;

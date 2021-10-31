@@ -16,7 +16,8 @@
         "GtkLayerShell:auth<zef:CIAvash>:api<0.6>",
         "Pod::Contents:auth<zef:CIAvash>",
         "Gnome::Gtk3",
-        "JSON::Fast"
+        "JSON::Fast",
+        "Getopt::Long"
     ],
     "test-depends": [
         "Test::Run:auth<zef:CIAvash>:ver<0.1.0>"

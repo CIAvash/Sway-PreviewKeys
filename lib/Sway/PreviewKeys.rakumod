@@ -52,6 +52,8 @@ Usage:
     [-t|--add-mode-name]                     -- Add mode name at top of the preview window [t=title]
     [-s|--sort-key-bindings]                 -- Sort mode's key bindings [s=sort]
     [-d|--bindsym-default-mode=<NAME>]       -- Bind a symbol for previewing key bindings of default mode [d=default]
+    [-f|--filter-out=<REGEX>]                -- Exclude commands which match REGEX. Can be repeated. [f=filter]
+                                                REGEX is a Raku regex: https://docs.raku.org/language/regexes
     [-r|--max-rows=<NUM>]                    -- Add columns to show key bindings when number of key bindings exceed the maximum row. Can be repeated. [r=row]
                                                 Biggest number which is lower than the number of key bindings is chosen, otherwise the minimum of the numbers is used
     [-e|--ellipsize=<NUM>]                   -- Ellipsize commands, given number is used for maximum characters to show. [e=ellipsize]
@@ -60,10 +62,12 @@ Usage:
                                                 Takes effect only when --ellipsize is used
 
   sway-preview-keys -v|--version -- Print version
+  sway-preview-keys -h|--help    -- Print help
 
 Example:
   sway-preview-keys -d 'Mod4+o' -t -e 26 -r 20 -r 38
   sway-preview-keys --bindsym-default-mode 'Mod4+o' --add-mode-name --ellipsize 26 --max-rows 20 --max-rows 38
+  sway-preview-keys -d 'Mod4+o' -t -e 55 -r 20 -r 38 -f ':s workspace number' -f '^ focus' -f ':s ^move < right left up down >'
 =end input
 
 Example style:
@@ -152,6 +156,11 @@ multi MAIN (Bool:D :v(:$version)!) {
     print $app_copyright;
 }
 
+#| Prints help
+multi MAIN (Bool:D :h(:$help)!) {
+    print GENERATE-USAGE(&, $);
+}
+
 #|[
 Gets the config from sway and parses it.
 
@@ -160,12 +169,13 @@ or C<$XDG_CONFIG_HOME/sway-preview-keys/style.css> or C<$HOME/.config/sway-previ
 
 Finally listens to Sway mode changes and shows a preview window for mode's key bindings.
 ]
-multi MAIN (IO::Path(Str) :p(:$style-path) where IO::Path | .so,
+multi MAIN (IO::Path :p(:$style-path),
             Bool:D :t(:$add-mode-name)     = False,
             Bool:D :s(:$sort-key-bindings) = False,
             Str :d(:$bindsym-default-mode),
+            :f(:@filter-out),
             :r(:@max-rows) where .all ~~ IntStr,
-            IntStr :e(:$ellipsize),
+            Int :e(:$ellipsize),
             Str:D :$ellipsis-position where <start center end>.any = 'center') {
     $sway_config .= new;
     $main        .= new;
@@ -182,7 +192,7 @@ multi MAIN (IO::Path(Str) :p(:$style-path) where IO::Path | .so,
     note 'sway-preview-keys: Could not find a CSS style file.' without $style_path;
 
     my Proc::Async $sway_mode_subscription    .= new: <swaymsg -t subscribe -m ["mode"]>;
-    my Proc::Async $sway_binding_subscription .= new: <swaymsg -t subscribe -m ["binding"]> if $default_bindsym;
+    my Proc::Async $sway_binding_subscription .= new: <swaymsg -t subscribe -m ["binding"]>;
 
     setup_default_mode_key_binding $default_bindsym;
 
@@ -203,10 +213,13 @@ multi MAIN (IO::Path(Str) :p(:$style-path) where IO::Path | .so,
         }
     }
 
+    my @filters = @filter-out.map: -> $filter { rx/<$filter>/ } if @filter-out;
+
     my &show_preview = &preview.assuming: :sort($sort-key-bindings),
                                           :add_title($add-mode-name),
                                           :$ellipsize,
                                           :ellipsis_position(HorizontalPosition($ellipsis-position)),
+                                          :@filters,
                                           :max_rows(@max-rows);
 
     # Show preview window if a mode is already active
@@ -271,11 +284,14 @@ multi MAIN (IO::Path(Str) :p(:$style-path) where IO::Path | .so,
     }
 }
 
-sub USAGE is export {
-    put "$app_title\n";
-    put "$app_description\n";
+sub GENERATE-USAGE(&main, |capture) is export {
+    qq:to/END/;
+    $app_title
 
-    put $=pod.&get_first_pod('SYNOPSIS').&join_pod_contents_of: Pod::Block::Code, '';
+    $app_description
+
+    $=pod.&get_first_pod('SYNOPSIS').&join_pod_contents_of(Pod::Block::Code, '')
+    END
 }
 
 sub current_mode returns Str:D {
@@ -296,6 +312,7 @@ sub preview (Str $mode?,
              Bool :$close     = False,
              Bool :$sort      = False,
              Bool :$add_title = False,
+             :@filters,
              :@max_rows,
              Int :$ellipsize,
              HorizontalPosition :$ellipsis_position) {
@@ -326,6 +343,8 @@ sub preview (Str $mode?,
         } else {
             $sway_config.mode{$mode}<key_bindings><>;
         }
+
+        @bindings.=grep: { .value<command> ~~ @filters.none } if @filters;
 
         @bindings.=sort: *.key if $sort;
 
