@@ -103,7 +103,7 @@ Example style:
 
 =begin INSTALLATION
 
-You need to have L<Raku|https://www.raku-lang.ir/en> and L<zef|https://github.com/ugexe/zef>,
+You need to have L<GTK Layer Shell|https://github.com/wmww/gtk-layer-shell>, L<Raku|https://www.raku-lang.ir/en> and L<zef|https://github.com/ugexe/zef>,
 then run:
 
 =begin code :lang<console>
