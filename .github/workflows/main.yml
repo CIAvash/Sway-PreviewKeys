@@ -15,12 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: rakudo-star:latest
+      image: alpine:edge
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+
+    - name: Install packages
+      run: apk add --no-cache perl rakudo zef
 
     - name: Raku version
       run: raku -v

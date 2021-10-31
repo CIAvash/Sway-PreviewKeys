@@ -74,7 +74,7 @@ Example style:
 INSTALLATION
 ============
 
-You need to have [Raku](https://www.raku-lang.ir/en) and [zef](https://github.com/ugexe/zef), then run:
+You need to have [GTK Layer Shell](https://github.com/wmww/gtk-layer-shell), [Raku](https://www.raku-lang.ir/en) and [zef](https://github.com/ugexe/zef), then run:
 
 ```console
 zef install --/test "Sway::PreviewKeys:auth<zef:CIAvash>"
@@ -115,8 +115,6 @@ Copyright © 2021 Siavash Askari Nasr
 
 LICENSE
 =======
-
-This file is part of Sway::PreviewKeys.
 
 Sway::PreviewKeys is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
