@@ -4,7 +4,7 @@
     "description": "Program for showing Sway window manager's key bindings associated with a mode.",
     "authors": ["Siavash Askari Nasr"],
     "auth": "zef:CIAvash",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "tags": ["Sway", "SwayWM", "App", "CLI", "Command Line", "Preview", "Key Bindings", "GUI"],
     "license": "GPL-3.0-or-later",
     "source-url": "https://github.com/CIAvash/Sway-PreviewKeys.git",
@@ -13,7 +13,7 @@
     },
     "depends": [
         "Sway::Config:auth<zef:CIAvash>",
-        "GtkLayerShell:auth<zef:CIAvash>:api<0.6>",
+        "GtkLayerShell:auth<zef:CIAvash>:api<0.7>",
         "Pod::Contents:auth<zef:CIAvash>",
         "Gnome::Gtk3",
         "JSON::Fast",

@@ -3,7 +3,7 @@ use v6.d;
 use JSON::Fast;
 use Pod::Contents:auth<zef:CIAvash>;
 use Sway::Config:auth<zef:CIAvash>;
-use GtkLayerShell:auth<zef:CIAvash>:api<0.6>;
+use GtkLayerShell:auth<zef:CIAvash>:api<0.7>;
 
 use Gnome::Gtk3::Main;
 use Gnome::Gtk3::Window;
