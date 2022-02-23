@@ -316,7 +316,7 @@ sub preview (Str $mode?,
              :@max_rows,
              Int :$ellipsize,
              HorizontalPosition :$ellipsis_position) {
-    .get-display-rk.gdk-display-flush with $screen;
+    Gnome::Gdk3::Display(.get-display).gdk-display-flush with $screen;
 
     my Bool:D $default_mode = $mode.defined && $mode eq 'default';
 
