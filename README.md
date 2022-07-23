@@ -100,17 +100,17 @@ prove -ve 'raku -I.' --ext rakutest
 REPOSITORY
 ==========
 
-[https://github.com/CIAvash/Sway-PreviewKeys](https://github.com/CIAvash/Sway-PreviewKeys)
+[https://codeberg.org/CIAvash/Sway-PreviewKeys](https://codeberg.org/CIAvash/Sway-PreviewKeys)
 
 BUG
 ===
 
-[https://github.com/CIAvash/Sway-PreviewKeys/issues](https://github.com/CIAvash/Sway-PreviewKeys/issues)
+[https://codeberg.org/CIAvash/Sway-PreviewKeys/issues](https://codeberg.org/CIAvash/Sway-PreviewKeys/issues)
 
 AUTHOR
 ======
 
-Siavash Askari Nasr - [https://www.ciavash.name/](https://www.ciavash.name/)
+Siavash Askari Nasr - [https://siavash.askari-nasr.com](https://siavash.askari-nasr.com)
 
 COPYRIGHT
 =========

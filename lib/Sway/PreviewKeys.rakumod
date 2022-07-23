@@ -442,11 +442,11 @@ sub ellipsize (Str:D $string, UInt:D $max_chars, HorizontalPosition :$position =
 # Just in case!
 END quit 'main';
 
-=REPOSITORY L<https://github.com/CIAvash/Sway-PreviewKeys>
+=REPOSITORY L<https://codeberg.org/CIAvash/Sway-PreviewKeys>
 
-=BUG L<https://github.com/CIAvash/Sway-PreviewKeys/issues>
+=BUG L<https://codeberg.org/CIAvash/Sway-PreviewKeys/issues>
 
-=AUTHOR Siavash Askari Nasr - L<https://www.ciavash.name/>
+=AUTHOR Siavash Askari Nasr - L<https://siavash.askari-nasr.com>
 
 =COPYRIGHT Copyright © 2021 Siavash Askari Nasr
 

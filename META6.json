@@ -7,7 +7,7 @@
     "version": "0.2.1",
     "tags": ["Sway", "SwayWM", "App", "CLI", "Command Line", "Preview", "Key Bindings", "GUI"],
     "license": "GPL-3.0-or-later",
-    "source-url": "https://github.com/CIAvash/Sway-PreviewKeys.git",
+    "source-url": "https://codeberg.org/CIAvash/Sway-PreviewKeys.git",
     "provides": {
         "Sway::PreviewKeys": "lib/Sway/PreviewKeys.rakumod"
     },
